@@ -22,3 +22,33 @@ html body{
     position: relative;
     top: 40px;
 }
+#header{
+    height: 100px;
+}
+#menu-container{
+    height: 70px;
+}
+#column-left{
+    background-color: red;
+    width: 250px;
+    float: left;
+}
+#column-center{
+    background-color: green;
+    width: 420px;
+    margin-left: 20px;
+    float: left;
+}
+#central-container .fixed-container{
+    overflow-y: hidden;
+}
+#column-right{
+    width: 250px;
+    float: right;
+}
+#column-right img{
+    margin-bottom: 20px;
+}
+#special-news{
+    margin-top: 20px;
+}

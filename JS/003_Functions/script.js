@@ -1,5 +1,6 @@
 'use strict';
 
+
 function printHello(){
     console.log('Hello!!!');
 }
@@ -18,8 +19,15 @@ function printName(name){
 
 function printName02(name){
     var name=name || 'User';
-    console.log(name);
+    return name;
 }
 
-romanov=20;
-alert(romanov);
+//рекурсия
+ function printNumbers(n){
+    if(n>0){
+        console.log(n);
+        printNumbers(n-1);
+    }
+ }
+
+ 

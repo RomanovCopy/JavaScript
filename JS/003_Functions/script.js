@@ -1,3 +1,5 @@
+'use strict';
+
 function printHello(){
     console.log('Hello!!!');
 }
@@ -19,3 +21,5 @@ function printName02(name){
     console.log(name);
 }
 
+romanov=20;
+alert(romanov);

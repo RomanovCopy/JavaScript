@@ -1,13 +1,12 @@
-debugger;//позволяет остановить выполнение программы
 
-function myFunc(){
-    //локальная зона видимости
-    //+ссылка на глобальную
-    var localVar='hello';
-    var anotherLocalVar=2017;
-}
+//IIFE
 
-//глобальная зона видимости
-var globalVar=1000;
-myFunc();
+(function (){
+    var localVar=100;
+    window.foo=function(){
+        console.log(localVar++);
+    }
+})();
+
+
  

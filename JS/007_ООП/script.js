@@ -4,10 +4,14 @@
     this.firstName=firstName;
     this.lastName=lastName;
     
-    this.getFullName=function(){
-        return this.firstName + ' ' + this.lastName;
-    }
+    // this.getFullName=function(){
+    //     return this.firstName + ' ' + this.lastName;
+    // }
  }
+
+ User.prototype.getFullName=function(){
+    return this.firstName + ' ' + this.lastName;
+};
 
 
  function Manager(firstName, lastName){

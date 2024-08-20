@@ -18,9 +18,9 @@
 
 // showARGS('Hellow', 'World');
 
-function display(){
-    console.log('Запуск функции с задержкой.');
-    console.log(arguments[0], arguments[1]);
-}
+// function display(){
+//     console.log('Запуск функции с задержкой.');
+//     console.log(arguments[0], arguments[1]);
+// }
 
-setTimeout(display,1000, 'Hello', 'world');
+// setTimeout(display,1000, 'Hello', 'world');

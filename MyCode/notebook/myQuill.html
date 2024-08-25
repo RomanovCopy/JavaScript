@@ -3,19 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Редактор Quill</title>
+    <title>Редактор Quill с изменением цвета текста</title>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>
 <body>
 
     <h2>WYSIWYG редактор с Quill</h2>
+    <!-- Контейнер для панели инструментов -->
+    <div id="toolbar">
+        <!-- Кнопки форматирования -->
+        <select class="ql-color"></select>
+        <select class="ql-background"></select>
+    </div>
+    <!-- Контейнер для редактора -->
     <div id="editor-container"></div>
     <button onclick="saveQuillContent()">Сохранить</button>
 
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script>
         const quill = new Quill('#editor-container', {
-            theme: 'snow'
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    ['bold', 'italic', 'underline'],        // Кнопки форматирования
+                    [{ 'color': [] }, { 'background': [] }]  // Опции цвета текста и фона
+                ]
+            }
         });
 
         function saveQuillContent() {

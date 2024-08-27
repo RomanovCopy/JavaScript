@@ -3,28 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Редактор TinyMCE</title>
-    <script src="https://cdn.tiny.cloud/1/zi563jrfzo1eyxwh89pfkm8r0kyd4ggnzncb31i8vzy7szlm/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <title>Редактор Quill с меню "File"</title>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <style>
+        /* Стили для меню "File" */
+        #file-menu {
+            display: inline-block;
+            position: relative;
+        }
+
+        #file-menu > button {
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: none;
+            cursor: pointer;
+        }
+
+        #file-dropdown {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            z-index: 100;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #file-dropdown li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #file-dropdown li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
 
+    <h2>WYSIWYG редактор с Quill</h2>
+
+    <!-- Меню "File" -->
+    <div id="file-menu">
+        <button>File</button>
+        <ul id="file-dropdown">
+            <li onclick="saveQuillContent('html')">Сохранить как HTML</li>
+            <li onclick="saveQuillContent('text')">Сохранить как TXT</li>
+            <li onclick="saveQuillContent('json')">Сохранить как JSON</li>
+        </ul>
+    </div>
+
+    <!-- Панель инструментов -->
+    <div id="toolbar">
+        <select class="ql-header">
+            <option value="1">Заголовок 1</option>
+            <option value="2">Заголовок 2</option>
+            <option selected>Обычный</option>
+        </select>
+        <button class="ql-bold"></button>
+        <button class="ql-italic"></button>
+        <button class="ql-underline"></button>
+        <select class="ql-color"></select>
+        <select class="ql-background"></select>
+        <button class="ql-indent" value="-1"></button>
+        <button class="ql-indent" value="+1"></button>
+        <select class="ql-line-height">
+            <option value="1.0">Одинарный</option>
+            <option value="1.5">Полуторный</option>
+            <option value="2.0">Двойной</option>
+            <option selected>По умолчанию</option>
+        </select>
+        <button class="ql-image"></button>
+        <select class="ql-font">
+            <option selected>По умолчанию</option>
+            <option value="serif">Serif</option>
+            <option value="monospace">Monospace</option>
+        </select>
+        <select class="ql-size">
+            <option value="small">Маленький</option>
+            <option selected>Обычный</option>
+            <option value="large">Большой</option>
+            <option value="huge">Огромный</option>
+        </select>
+    </div>
+
+    <!-- Контейнер для редактора -->
+    <div id="editor-container"></div>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script>
-        tinymce.init({
-          selector: 'textarea',
-          plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
-          toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-          tinycomments_mode: 'embedded',
-          tinycomments_author: 'Author name',
-          mergetags_list: [
-            { value: 'First.Name', title: 'First Name' },
-            { value: 'Email', title: 'Email' },
-          ],
-          ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        // Расширение формата с добавлением line-height
+        var Parchment = Quill.import('parchment');
+        var lineHeightStyle = new Parchment.Attributor.Style('line-height', 'line-height', {
+            scope: Parchment.Scope.BLOCK,
+            whitelist: ['1.0', '1.5', '2.0']
         });
-      </script>
-      <textarea>
-        Welcome to TinyMCE!
-      </textarea>
+        Quill.register(lineHeightStyle, true);
+
+        const quill = new Quill('#editor-container', {
+            theme: 'snow',
+            modules: {
+                toolbar: {
+                    container: '#toolbar',
+                    handlers: {
+                        'line-height': function(value) {
+                            this.quill.format('line-height', value);
+                        }
+                    }
+                }
+            }
+        });
+
+        // Функция для сохранения контента в различных форматах
+        function saveQuillContent(format) {
+            let content, blob, fileName;
+
+            switch (format) {
+                case 'html':
+                    content = quill.root.innerHTML;
+                    blob = new Blob([content], { type: 'text/html' });
+                    fileName = 'content.html';
+                    break;
+                case 'text':
+                    content = quill.getText();
+                    blob = new Blob([content], { type: 'text/plain' });
+                    fileName = 'content.txt';
+                    break;
+                case 'json':
+                    content = JSON.stringify(quill.getContents());
+                    blob = new Blob([content], { type: 'application/json' });
+                    fileName = 'content.json';
+                    break;
+            }
+
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Показать/скрыть выпадающее меню
+        document.querySelector('#file-menu > button').addEventListener('click', function() {
+            const dropdown = document.getElementById('file-dropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Скрыть меню, если щелкнуть вне его
+        window.addEventListener('click', function(e) {
+            if (!document.getElementById('file-menu').contains(e.target)) {
+                document.getElementById('file-dropdown').style.display = 'none';
+            }
+        });
+    </script>
 
 </body>
 </html>

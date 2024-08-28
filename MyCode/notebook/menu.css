@@ -1,0 +1,42 @@
+/* Стили для меню "File" */
+#file-menu {
+    display: inline-block;
+    position: relative;
+}
+
+#file-menu > button {
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+}
+
+#file-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#file-dropdown li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+#file-dropdown li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Скрытие input для выбора директории */
+#directory-input {
+    display: none;
+}
+
+#file-input{
+    display: none;
+}

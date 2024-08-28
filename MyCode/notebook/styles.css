@@ -1,67 +1,13 @@
-/* styles.css */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f1f1;
-}
-
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 5px 10px;
-}
-
-nav {
-    margin-top: 10px;
-}
-
-.menu {
-    list-style-type: none;
-    padding: 0;
-}
-
-.menu > li {
-    position: relative;
-    display: inline-block;
-    margin-right: 20px;
-}
-
-.menu a {
-    color: #fff;
-    text-decoration: none;
-    padding: 5,5,5,0 px;
-    display: block;
-}
-
-.menu a:hover {
-    background-color: #555;
-}
-
-.submenu {
-    display: none; /* Скрываем подменю по умолчанию */
+#editor-container {
     position: absolute;
-    top: 100%; /* Ставим подменю ниже основного пункта */
-    left: 0;
-    background-color: #444;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    z-index: 100;
+    top: 100px; /* Высота заголовка, настраивайте по необходимости */
+    bottom: 20px; /* Высота подвала, настраивайте по необходимости */
+    left: 25px;
+    right: 25px;
+    background-color: #f0f0f0;
+    padding: 0px;
+    border-color: black;
 }
-
-.submenu li {
-    display: block;
-}
-
-.submenu a {
-    text-align: left;
-    font-size: 12px;
-    padding: 5px;
-    width: 100px;
-}
-
-/* Показать подменю при наведении на родительский элемент */
-.menu > li:hover .submenu {
-    display: block;
+#toolbar{
+    background-color: aqua;
 }

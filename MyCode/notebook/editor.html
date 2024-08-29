@@ -13,7 +13,7 @@
 <body>
 
     <!-- Меню "File" -->
-    <div id="file-menu">
+    <!-- <div id="file-menu">
         <button>File</button>
         <ul id="file-dropdown">
             <li onclick="saveQuillContent('html')">Сохранить как HTML</li>
@@ -23,14 +23,35 @@
             <li onclick="document.getElementById('file-input').click()">Открыть файл</li>
         </ul>
     </div>
-
+ -->
     <!-- Панель инструментов -->
     <div id="toolbar">
+        <div id="file-menu">
+            <button class="dropbtn">File</button>
+            <ul id="file-dropdown">
+                <li onclick="saveQuillContent('html')">Сохранить как HTML</li>
+                <li onclick="saveQuillContent('text')">Сохранить как TXT</li>
+                <li onclick="saveQuillContent('json')">Сохранить как JSON</li>
+                <li onclick="chooseDirectory()">Выбрать папку для сохранения</li>
+                <li onclick="document.getElementById('file-input').click()">Открыть файл</li>
+            </ul>
+        </div>
         <select class="ql-header">
             <option value="1">Заголовок 1</option>
             <option value="2">Заголовок 2</option>
             <option value="3">Заголовок 3</option>
             <option selected>Обычный</option>
+        </select>
+        <select class="ql-font">
+            <option selected>По умолчанию</option>
+            <option value="serif">Serif</option>
+            <option value="monospace">Monospace</option>
+        </select>
+        <select class="ql-size">
+            <option value="small">Маленький</option>
+            <option selected>Обычный</option>
+            <option value="large">Большой</option>
+            <option value="huge">Огромный</option>
         </select>
         <button class="ql-bold"></button>
         <button class="ql-italic"></button>
@@ -46,18 +67,9 @@
             <option selected>По умолчанию</option>
         </select>
         <button class="ql-image"></button>
-        <select class="ql-font">
-            <option selected>По умолчанию</option>
-            <option value="serif">Serif</option>
-            <option value="monospace">Monospace</option>
-        </select>
-        <select class="ql-size">
-            <option value="small">Маленький</option>
-            <option selected>Обычный</option>
-            <option value="large">Большой</option>
-            <option value="huge">Огромный</option>
-        </select>
+        
     </div>
+
 
     <!-- Контейнер для редактора -->
     <div id="editor-container"></div>

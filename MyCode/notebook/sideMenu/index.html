@@ -5,23 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кастомизированное боковое меню</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="quilljs.css" rel="stylesheet">
+
+    <script src="script.js" defer></script>
+    <script src="QuillEditor.js" defer></script>
+
 </head>
 <body>
     <!-- ToolBar -->
-    <div class="toolbar">
+    <div class="toolbar" >
         <button class="toggle-btn">☰</button> <!-- Кнопка для управления боковым меню -->
     </div>
 
-    <!-- <button class="toggle-btn">☰</button> Кнопка для управления меню -->
     <div class="sidebar">
         <div class="dropdown">
-            <button class="dropdown-btn">File</button>
-            <ul class="dropdown-menu">
-                <li><a href="#">Главная</a></li>
-                <li><a href="#">О нас</a></li>
-                <li><a href="#">Услуги</a></li>
-                <li><a href="#">Контакты</a></li>
-            </ul>
+                <button class="dropdown-btn" >File</button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Open</a></li>
+                    <li><a href="#">Save</a></li>
+                    <li><a href="#">Save As</a></li>
+                </ul>
+                <button class="dropdown-btn" >Encode</button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Open</a></li>
+                    <li><a href="#">Save</a></li>
+                    <li><a href="#">Save As</a></li>
+                </ul>
         </div>
     </div>
 
@@ -31,6 +40,5 @@
         <p>Это пример страницы с боковым меню.</p>
     </div>
 
-    <script src="script.js"></script>
 </body>
 </html>

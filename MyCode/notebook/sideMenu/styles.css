@@ -65,6 +65,8 @@ body {
     margin-left: 20px;
 }
 
+
+
 .toggle-btn {
     position: fixed;
     top: 5px;
@@ -104,7 +106,7 @@ body {
     align-items: center; /* Центруем содержимое по вертикали */
 }
 
-.sidebar .dropdown-menu {
+.sidebar .dropdown-menuFile,  .sidebar .dropdown-menuEncode{
     display: none;
     background-color: #444;
     color: #fff;
@@ -113,6 +115,13 @@ body {
     z-index: 1;
     border-radius: 3px;
 }
+
+
+/* Показываем меню, когда добавлен класс 'active' */
+.sidebar .dropdown-menuFile.active, .sidebar .dropdown-menuEncode.active {
+    display: block;
+}
+
 
 .sidebar .dropdown-menu li {
     padding: 12px 16px;
@@ -132,3 +141,25 @@ body {
 .sidebar .dropdown.active .dropdown-menu {
     display: block;
 }
+
+#editor-container {
+    height: 400px;
+    margin-top: 20px;
+}
+
+.ql-toolbar {
+    margin-bottom: 10px;
+}
+
+
+
+.ql-size-10px { font-size: 10px; }
+.ql-size-12px { font-size: 12px; }
+.ql-size-14px { font-size: 14px; }
+.ql-size-16px { font-size: 16px; }
+.ql-size-18px { font-size: 18px; }
+.ql-size-20px { font-size: 20px; }
+.ql-size-24px { font-size: 24px; }
+.ql-size-32px { font-size: 32px; }
+.ql-size-40px { font-size: 40px; }
+

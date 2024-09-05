@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кастомизированное боковое меню</title>
+    <!-- Подключаем локальные файлы Quill -->
+    <link rel="stylesheet" href="quill/quill.snow.css">
+    <script src="quill/quill.min.js" defer></script>
     <link rel="stylesheet" href="styles.css">
-    <link href="quilljs.css" rel="stylesheet">
-
     <script src="script.js" defer></script>
-    <script src="QuillEditor.js" defer></script>
 
 </head>
 <body>
@@ -20,13 +20,13 @@
     <div class="sidebar">
         <div class="dropdown">
                 <button class="dropdown-btn" >File</button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menuFile">
                     <li><a href="#">Open</a></li>
                     <li><a href="#">Save</a></li>
                     <li><a href="#">Save As</a></li>
                 </ul>
                 <button class="dropdown-btn" >Encode</button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menuEncode">
                     <li><a href="#">Open</a></li>
                     <li><a href="#">Save</a></li>
                     <li><a href="#">Save As</a></li>
@@ -34,10 +34,10 @@
         </div>
     </div>
 
+
+        <!-- Content with Quill Editor -->
     <div class="content">
-        <!-- Основное содержимое страницы -->
-        <h1>Добро пожаловать на наш сайт</h1>
-        <p>Это пример страницы с боковым меню.</p>
+        <div id="editor-container"></div>
     </div>
 
 </body>
